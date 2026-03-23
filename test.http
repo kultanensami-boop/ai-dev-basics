@@ -1,0 +1,11 @@
+### Test POST /items
+POST http://localhost:5000/items
+Content-Type: application/json
+
+{
+  "name": "Wireless Headphones",
+  "description": "High-quality sound",
+  "price": 199.99,
+  "category": "Electronics",
+  "in_stock": true
+}
