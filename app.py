@@ -1,13 +1,31 @@
+import json
 from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-# Alustava lista tuotteille
-items_list = [
-    {"id": 1, "name": "Laptop", "description": "Fast laptop", "price": 999.99, "category": "Electronics", "in_stock": True},
-    {"id": 2, "name": "Phone", "description": "Smartphone", "price": 699.99, "category": "Electronics", "in_stock": True},
-    {"id": 3, "name": "Book", "description": "Novel", "price": 19.99, "category": "Books", "in_stock": True}
-]
+DATA_FILE = "data.json"
+
+# --- Helper functions ---
+
+def load_items():
+    """Lataa tuotteet JSON-tiedostosta."""
+    try:
+        with open(DATA_FILE, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return []
+    except json.JSONDecodeError:
+        return []
+
+def save_items(items):
+    """Tallentaa tuotteet JSON-tiedostoon."""
+    with open(DATA_FILE, "w", encoding="utf-8") as f:
+        json.dump(items, f, indent=2, ensure_ascii=False)
+
+# Lataa data käynnistyessä
+items_list = load_items()
+
+# --- API endpoints ---
 
 # GET /items – hae kaikki tuotteet
 @app.route('/items', methods=['GET'])
@@ -20,7 +38,7 @@ def add_item():
     data = request.get_json()
 
     new_item = {
-        "id": len(items_list) + 1,
+        "id": max([i["id"] for i in items_list], default=0) + 1,
         "name": data.get("name"),
         "description": data.get("description"),
         "price": data.get("price"),
@@ -29,6 +47,8 @@ def add_item():
     }
 
     items_list.append(new_item)
+    save_items(items_list)
+
     return jsonify(new_item), 201
 
 # DELETE /items/<id> – poista tuote
@@ -41,9 +61,11 @@ def delete_item(item_id):
         return jsonify({"error": "Item not found"}), 404
 
     items_list = [i for i in items_list if i["id"] != item_id]
+    save_items(items_list)
+
     return jsonify({"message": f"Item {item_id} deleted"}), 200
 
-# PUT /items/<id> – päivitä koko tuote
+# PUT /items/<id> – päivitä tuote
 @app.route('/items/<int:item_id>', methods=['PUT'])
 def update_item(item_id):
     data = request.get_json()
@@ -59,6 +81,8 @@ def update_item(item_id):
         "category": data.get("category"),
         "in_stock": data.get("in_stock")
     })
+
+    save_items(items_list)
 
     return jsonify(item), 200
 

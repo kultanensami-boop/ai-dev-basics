@@ -9,3 +9,18 @@ Content-Type: application/json
   "category": "Electronics",
   "in_stock": true
 }
+### Test GET /items
+GET http://localhost:5000/items
+### Test DELETE /items/4
+DELETE http://localhost:5000/items/4
+### Test PUT /items/4
+PUT http://localhost:5000/items/4
+Content-Type: application/json
+
+{
+  "name": "Updated Headphones",
+  "description": "Even better sound",
+  "price": 149.99,
+  "category": "Electronics",
+  "in_stock": false
+}
