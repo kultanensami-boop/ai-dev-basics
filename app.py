@@ -1,7 +1,10 @@
+from flask_cors import CORS
+
 import json
 from flask import Flask, request, jsonify
 
 app = Flask(__name__)
+CORS(app)
 
 DATA_FILE = "data.json"
 
@@ -17,10 +20,10 @@ def load_items():
     except json.JSONDecodeError:
         return []
 
-def save_items(items):
-    """Tallentaa tuotteet JSON-tiedostoon."""
+def save_items():
     with open(DATA_FILE, "w", encoding="utf-8") as f:
-        json.dump(items, f, indent=2, ensure_ascii=False)
+        json.dump(items_list, f, indent=2, ensure_ascii=False)
+
 
 # Lataa data käynnistyessä
 items_list = load_items()
@@ -43,7 +46,8 @@ def add_item():
         "description": data.get("description"),
         "price": data.get("price"),
         "category": data.get("category"),
-        "in_stock": data.get("in_stock")
+        "in_stock": data.get("in_stock"),
+        "stock": data.get("stock", 0)
     }
 
     items_list.append(new_item)
@@ -85,6 +89,18 @@ def update_item(item_id):
     save_items(items_list)
 
     return jsonify(item), 200
+@app.route('/items/<int:item_id>/stock', methods=['PUT'])
+def update_stock(item_id):
+    data = request.get_json()
+    change = data.get("change", 0)
+
+    for item in items_list:
+        if item["id"] == item_id:
+            item["stock"] = max(0, item["stock"] + change)
+            save_items()
+            return jsonify(item), 200
+
+    return jsonify({"error": "Item not found"}), 404
 
 # Käynnistä Flask
 if __name__ == "__main__":

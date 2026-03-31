@@ -5,7 +5,8 @@
     "description": "Fast laptop",
     "price": 999.99,
     "category": "Electronics",
-    "in_stock": true
+    "in_stock": true,
+    "stock": 1500
   },
   {
     "id": 3,
@@ -13,7 +14,8 @@
     "description": "Novel",
     "price": 19.99,
     "category": "Books",
-    "in_stock": true
+    "in_stock": true,
+    "stock": 100
   },
   {
     "id": 4,
@@ -21,6 +23,25 @@
     "description": "Even faster laptop",
     "price": 1299.99,
     "category": "Electronics",
-    "in_stock": true
+    "in_stock": true,
+    "stock": 50
+  },
+  {
+    "id": 5,
+    "name": "Mokkula",
+    "description": "Tehokas 5G mokkula",
+    "price": 399,
+    "category": "Testituotteet",
+    "in_stock": true,
+    "stock": 13
+  },
+  {
+    "id": 6,
+    "name": "Pelinäyttö",
+    "description": "Acer Nitro QG270S3 27\" -pelinäyttö",
+    "price": 99,
+    "category": "Näytöt",
+    "in_stock": true,
+    "stock": 150
   }
 ]

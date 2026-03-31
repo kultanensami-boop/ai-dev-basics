@@ -1,0 +1,100 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+    margin: 0;
+    padding: 20px;
+}
+
+h1, h2 {
+    text-align: center;
+    color: #333;
+}
+
+#items-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.item-card {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.item-card h3 {
+    margin-top: 0;
+    color: #222;
+}
+
+.item-card p {
+    margin: 5px 0;
+    color: #555;
+}
+
+.item-card button {
+    margin-top: 10px;
+    background: #d9534f;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.item-card button:hover {
+    background: #c9302c;
+}
+
+form {
+    max-width: 500px;
+    margin: 0 auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+form input[type="text"],
+form input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+form button {
+    width: 100%;
+    padding: 12px;
+    background: #0275d8;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+form button:hover {
+    background: #025aa5;
+}
+.stock-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.stock-controls button {
+    background: #5bc0de;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.stock-controls button:hover {
+    background: #31b0d5;
+}
