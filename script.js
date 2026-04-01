@@ -1,12 +1,22 @@
+let activeCategory = null;
+
 // Haetaan tuotteet API:sta ja näytetään ne sivulla
-async function fetchItems() {
+async function fetchItems(filterCategory = null) {
     const response = await fetch("http://localhost:5000/items");
     const items = await response.json();
+
+    let filteredItems = items;
+    
+
+    if (filterCategory) {
+        filteredItems = items.filter(item => item.category === filterCategory);
+    }
 
     const container = document.getElementById("items-container");
     container.innerHTML = "";
 
-    items.forEach(item => {
+
+    filteredItems.forEach(item => {
         const div = document.createElement("div");
         div.className = "item-card";
         div.setAttribute("data-id", item.id);
@@ -36,8 +46,8 @@ document.getElementById("add-item-form").addEventListener("submit", async (e) =>
     const newItem = {
     name: document.getElementById("name").value,
     description: document.getElementById("description").value,
-    price: parseFloat(document.getElementById("price").value),
-    category: document.getElementById("category").value,
+    price: parseFloat(document.getElementById("price").value.replace(",", ".")),
+    category: document.getElementById("categorySelect").value,
     in_stock: document.getElementById("in_stock").checked,
     stock: parseInt(document.getElementById("stock").value)
 };
@@ -60,6 +70,63 @@ async function deleteItem(id) {
 
     fetchItems();
 }
+async function renderCategoryButtons() {
+    const categories = await loadCategories();
+    const container = document.getElementById("category-buttons");
+
+    container.innerHTML = "";
+
+    // "Kaikki" -painike
+    const allBtn = document.createElement("button");
+    allBtn.textContent = "Kaikki";
+    allBtn.className = activeCategory === null ? "active-category" : "";
+    allBtn.onclick = () => {
+        activeCategory = null;
+        fetchItems();
+        renderCategoryButtons();
+    };
+    container.appendChild(allBtn);
+
+    // Luodaan painike jokaiselle kategorialle
+    categories.forEach(cat => {
+        const btn = document.createElement("button");
+        btn.textContent = cat;
+
+        // Korostus
+        btn.className = activeCategory === cat ? "active-category" : "";
+
+        btn.onclick = () => {
+            activeCategory = cat;
+            fetchItems(cat);
+            renderCategoryButtons();
+        };
+
+        container.appendChild(btn);
+    });
+}
+
+
+async function loadCategories() {
+    const response = await fetch("http://localhost:5000/categories");
+    const categories = await response.json();
+    return categories;
+}
+async function populateCategoryDropdown() {
+    const categories = await loadCategories();
+    const select = document.getElementById("categorySelect");
+
+    // Tyhjennetään varmuuden vuoksi (jos siellä on jotain)
+    select.innerHTML = '<option value="">Valitse kategoria</option>';
+
+    categories.forEach(cat => {
+        const option = document.createElement("option");
+        option.value = cat;
+        option.textContent = cat;
+        select.appendChild(option);
+    });
+}
+
+
 async function updateStock(id, change) {
     const response = await fetch(`http://localhost:5000/items/${id}/stock`, {
         method: "PUT",
@@ -81,3 +148,8 @@ async function updateStock(id, change) {
 
 // Ladataan tuotteet sivun avautuessa
 fetchItems();
+populateCategoryDropdown();
+renderCategoryButtons();
+
+
+

@@ -1,47 +1,47 @@
 [
   {
     "id": 1,
-    "name": "Laptop TEST",
-    "description": "Fast laptop",
-    "price": 999.99,
-    "category": "Electronics",
-    "in_stock": true,
-    "stock": 1500
-  },
-  {
-    "id": 3,
-    "name": "Book",
-    "description": "Novel",
-    "price": 19.99,
-    "category": "Books",
-    "in_stock": true,
-    "stock": 100
-  },
-  {
-    "id": 4,
-    "name": "Updated Laptop",
-    "description": "Even faster laptop",
-    "price": 1299.99,
-    "category": "Electronics",
-    "in_stock": true,
-    "stock": 50
-  },
-  {
-    "id": 5,
-    "name": "Mokkula",
-    "description": "Tehokas 5G mokkula",
-    "price": 399,
-    "category": "Testituotteet",
-    "in_stock": true,
-    "stock": 13
-  },
-  {
-    "id": 6,
     "name": "Pelinäyttö",
     "description": "Acer Nitro QG270S3 27\" -pelinäyttö",
     "price": 99,
     "category": "Näytöt",
     "in_stock": true,
-    "stock": 150
+    "stock": 147
+  },
+  {
+    "id": 2,
+    "name": "Acer Pöytäkone",
+    "description": "Acer Nitro N50 Intel Core i5-14400F 1024Gt RTX5060 DG.E3UEQ.00Q",
+    "price": 1099,
+    "category": "Tietokoneet",
+    "in_stock": true,
+    "stock": 30
+  },
+  {
+    "id": 3,
+    "name": "Haluan kuulla kaiken",
+    "description": "Elizabeth Strout",
+    "price": 33.95,
+    "category": "Kirjat",
+    "in_stock": true,
+    "stock": 49
+  },
+  {
+    "id": 4,
+    "name": "Viivakoodinlukija",
+    "description": "AX4 OBDII-vikakoodinlukija akkutesterillä",
+    "price": 29.9,
+    "category": "Työkalut",
+    "in_stock": true,
+    "stock": 24
+  },
+  {
+    "id": 5,
+    "name": "Pokemon Booster Bundle",
+    "description": "Pokemon TCG: ME02.5 Ascended Heroes Booster Bundle (6)",
+    "price": 47.9,
+    "category": "Muut",
+    "in_stock": true,
+    "stock": 99
   }
 ]

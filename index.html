@@ -8,19 +8,24 @@
 <body>
 
     <h1>Tuotelista</h1>
-
+    
+    <div id="category-buttons"></div>
     <div id="items-container">
         <!-- Tuotteet tulevat tänne JavaScriptillä -->
     </div>
+    
 
     <h2>Lisää uusi tuote</h2>
 
     <form id="add-item-form">
         <input type="text" id="name" placeholder="Nimi" required>
         <input type="text" id="description" placeholder="Kuvaus" required>
-        <input type="number" id="price" placeholder="Hinta" required>
+     <input type="number" id="price" placeholder="Hinta" step="0.01" required>
         <input type="number" id="stock" placeholder="Varastosaldo" required>
-        <input type="text" id="category" placeholder="Kategoria" required>
+        <select id="categorySelect" required>
+    <option value="">Valitse kategoria</option>
+</select>
+
         <label>
             <input type="checkbox" id="in_stock" checked>
             Varastossa

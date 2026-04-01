@@ -20,15 +20,31 @@ def load_items():
     except json.JSONDecodeError:
         return []
 
-def save_items():
+def save_items(items):
     with open(DATA_FILE, "w", encoding="utf-8") as f:
-        json.dump(items_list, f, indent=2, ensure_ascii=False)
+        json.dump(items, f, indent=2, ensure_ascii=False)
+
 
 
 # Lataa data käynnistyessä
 items_list = load_items()
 
+
+CATEGORIES = [
+    "Tietokoneet",
+    "Kirjat",
+    "Näytöt",
+    "Työkalut",
+    "Muut"
+]
+
+
+
 # --- API endpoints ---
+
+@app.get("/categories")
+def get_categories():
+    return jsonify(CATEGORIES)
 
 # GET /items – hae kaikki tuotteet
 @app.route('/items', methods=['GET'])
@@ -54,6 +70,7 @@ def add_item():
     save_items(items_list)
 
     return jsonify(new_item), 201
+
 
 # DELETE /items/<id> – poista tuote
 @app.route('/items/<int:item_id>', methods=['DELETE'])
@@ -97,7 +114,7 @@ def update_stock(item_id):
     for item in items_list:
         if item["id"] == item_id:
             item["stock"] = max(0, item["stock"] + change)
-            save_items()
+            save_items(items_list)
             return jsonify(item), 200
 
     return jsonify({"error": "Item not found"}), 404
