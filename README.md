@@ -1,5 +1,8 @@
 AI Dev Basics – Flask Full‑Stack Inventory App
-Tämä projekti on Flask‑pohjainen full‑stack‑sovellus, joka tarjoaa täyden CRUD‑toiminnallisuuden (Create, Read, Update, Delete), kuvan latauksen, kategoriasuodatuksen ja responsiivisen HTML‑käyttöliittymän.
+Tämä projekti on ensimmäinen harjoitus osana laajempaa kokonaisuutta, jossa opettelen AI‑kehittäjän taitoja ja rakennan täyden kehityspolun backendistä käyttöliittymään ja myöhemmin tekoälytoimintoihin.
+Tavoitteena on oppia modernin ohjelmistokehityksen peruspalikat ja rakentaa vaihe vaiheelta kohti tuotantotasoista AI‑sovellusta.
+
+Tämä sovellus on Flask‑pohjainen full‑stack‑projekti, joka tarjoaa täyden CRUD‑toiminnallisuuden (Create, Read, Update, Delete), kuvan latauksen, kategoriasuodatuksen ja responsiivisen HTML‑käyttöliittymän.
 Sovellus toimii pohjana myöhemmille laajennuksille, kuten tietokantaintegraatiolle, autentikaatiolle ja AI‑toiminnoille.
 
 🚀 Ominaisuudet
@@ -64,4 +67,5 @@ DELETE http://localhost:5000/items/1
 – AI‑pohjainen tuotesuositus / kategorisointi
 
 👤 Tekijä
-Sami Kultanen
+Sami Kultanen  
+Ensimmäinen askel matkalla AI‑kehittäjäksi.
