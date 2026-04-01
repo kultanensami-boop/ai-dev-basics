@@ -1,107 +1,67 @@
-# AI Dev Basics – Flask REST API
+AI Dev Basics – Flask Full‑Stack Inventory App
+Tämä projekti on Flask‑pohjainen full‑stack‑sovellus, joka tarjoaa täyden CRUD‑toiminnallisuuden (Create, Read, Update, Delete), kuvan latauksen, kategoriasuodatuksen ja responsiivisen HTML‑käyttöliittymän.
+Sovellus toimii pohjana myöhemmille laajennuksille, kuten tietokantaintegraatiolle, autentikaatiolle ja AI‑toiminnoille.
 
-Tämä projekti on yksinkertainen Flask-pohjainen REST API, joka tarjoaa täyden CRUD-toiminnallisuuden (Create, Read, Update, Delete).  
-API hallinnoi tuotteiden listaa ja toimii pohjana myöhemmille laajennuksille, kuten:
-
-- JSON-tiedostoon tallennus
-- Yksinkertainen HTML-käyttöliittymä
-- Mahdolliset AI-toiminnot
-
----
-
-## 🚀 Ominaisuudet
-
-### ✔ GET /items  
+🚀 Ominaisuudet
+✔ GET /items
 Hakee kaikki tuotteet.
 
-### ✔ POST /items  
-Lisää uuden tuotteen.
+✔ POST /items
+Lisää uuden tuotteen (FormData + kuvan lataus).
 
-### ✔ PUT /items/<id>  
-Päivittää olemassa olevan tuotteen kokonaan.
+✔ PUT /items/<id>
+Päivittää olemassa olevan tuotteen.
 
-### ✔ DELETE /items/<id>  
-Poistaa tuotteen.
+✔ PUT /items/<id>/stock
+Muokkaa varastosaldoa (+ / –).
 
----
+✔ DELETE /items/<id>
+Poistaa tuotteen ja siihen liittyvän kuvan.
 
-## 🧱 Asennus
+✔ Frontend‑ominaisuudet
+– Tuotekortit
+– Placeholder‑kuva tuotteille ilman kuvaa
+– Kategoriasuodatus
+– Varastosaldon päivitys
+– Responsiivinen layout
+– Kuvan lataus uniikilla tiedostonimellä
 
-### 1. Asenna riippuvuudet
-```bash
+🧱 Asennus
+1. Asenna riippuvuudet
 pip install -r requirements.txt
-```
 
-### 2. Käynnistä palvelin
-```bash
+2. Käynnistä palvelin
 python app.py
-```
 
-### 3. API toimii osoitteessa
-```
+3. Sovellus toimii osoitteessa
 http://localhost:5000
-```
 
----
-
-## 🧪 Testaus (REST Client)
-
-Projektissa on mukana `test.http`-tiedosto, jota voi käyttää VS Coden REST Client -laajennuksella.
+🧪 Testaus (REST Client)
+Projektissa on mukana test.http‑tiedosto, jota voi käyttää VS Coden REST Client ‑laajennuksella.
 
 Esimerkkejä:
-```http
+
 GET http://localhost:5000/items
-```
 
-```http
-POST http://localhost:5000/items
+PUT http://localhost:5000/items/1/stock
 Content-Type: application/json
+{ "change": -1 }
 
-{
-  "name": "Example",
-  "description": "Test item",
-  "price": 9.99,
-  "category": "Misc",
-  "in_stock": true
-}
-```
-
-```http
-PUT http://localhost:5000/items/1
-Content-Type: application/json
-
-{
-  "name": "Updated",
-  "description": "Updated item",
-  "price": 19.99,
-  "category": "Misc",
-  "in_stock": false
-}
-```
-
-```http
 DELETE http://localhost:5000/items/1
-```
 
----
+🔧 Teknologiat
+– Python 3.11
+– Flask
+– HTML / CSS
+– JavaScript
+– JSON‑persistenssi
+– REST Client (VS Code)
 
-## 🔧 Teknologiat
+📌 Tulevat ominaisuudet
+– Tietokantaintegraatio (SQLite / PostgreSQL)
+– Käyttäjätilit ja kirjautuminen
+– Hakutoiminto
+– AI‑pohjainen tuotesuositus / kategorisointi
 
-- Python 3.11
-- Flask
-- REST Client (VS Code)
-
----
-
-## 📌 Tulevat ominaisuudet
-
-- JSON-tiedostoon tallennus (persistenssi)
-- HTML-käyttöliittymä API:n päälle
-- Parempi virheenkäsittely
-- Mahdolliset AI-toiminnot
-
----
-
-## 👤 Tekijä
-
-**Sami Kultanen**
+👤 Tekijä
+Sami Kultanen
