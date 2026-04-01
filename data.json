@@ -27,21 +27,13 @@
     "stock": 49
   },
   {
-    "id": 4,
-    "name": "Viivakoodinlukija",
-    "description": "AX4 OBDII-vikakoodinlukija akkutesterillä",
-    "price": 29.9,
-    "category": "Työkalut",
+    "id": 6,
+    "name": "MSI Cyborg 15 15,6\" Intel Core 5-210H RTX5050 B2RWEKG-005NEU",
+    "description": "Intel Core 5 210H -prosessori ja NVIDIA GeForce RTX 5050 -näytönohjain tarjoavat tehokkaan pelikokemuksen Futuristinen ulkoasu, 144 Hz FHD-näyttö ja ohjelmoitava RGB-näppäimistö MSI AI Robot ja MSI Center mahdollistavat tekoälypohjaisen optimoinnin ja käyttäjäkohtaiset säädöt.",
+    "price": 799.0,
+    "stock": 4,
     "in_stock": true,
-    "stock": 24
-  },
-  {
-    "id": 5,
-    "name": "Pokemon Booster Bundle",
-    "description": "Pokemon TCG: ME02.5 Ascended Heroes Booster Bundle (6)",
-    "price": 47.9,
-    "category": "Muut",
-    "in_stock": true,
-    "stock": 99
+    "category": "Tietokoneet",
+    "image_url": "/static/images/MSI_Cyborg_15.png"
   }
 ]

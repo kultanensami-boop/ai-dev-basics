@@ -22,6 +22,10 @@ async function fetchItems(filterCategory = null) {
         div.setAttribute("data-id", item.id);
 
         div.innerHTML = `
+       <img 
+    src="${item.image_url || '/static/default.jpg'}" 
+    class="item-image"
+/>
             <h3>${item.name}</h3>
             <p>${item.description}</p>
             <p>Hinta: ${item.price} €</p>
@@ -40,27 +44,33 @@ async function fetchItems(filterCategory = null) {
 }
 
 // Uuden tuotteen lisääminen
-document.getElementById("add-item-form").addEventListener("submit", async (e) => {
+document.getElementById("add-item-form").addEventListener("submit", async function (e) {
     e.preventDefault();
 
-    const newItem = {
-    name: document.getElementById("name").value,
-    description: document.getElementById("description").value,
-    price: parseFloat(document.getElementById("price").value.replace(",", ".")),
-    category: document.getElementById("categorySelect").value,
-    in_stock: document.getElementById("in_stock").checked,
-    stock: parseInt(document.getElementById("stock").value)
-};
+    const formData = new FormData();
+    formData.append("name", document.getElementById("name").value);
+    formData.append("description", document.getElementById("description").value);
+    formData.append("price", document.getElementById("price").value);
+    formData.append("stock", document.getElementById("stock").value);
+    formData.append("category", document.getElementById("categorySelect").value);
 
-    await fetch("http://localhost:5000/items", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newItem)
-    });
+    const imageFile = document.getElementById("image").files[0];
+    if (imageFile) {
+        formData.append("image", imageFile);
+    }
 
-    e.target.reset();
-    fetchItems();
+    const response = await fetch("http://localhost:5000/items", {
+    method: "POST",
+    body: formData
 });
+
+
+    if (response.ok) {
+        fetchItems();
+        e.target.reset();
+    }
+});
+
 
 // Tuotteen poistaminen
 async function deleteItem(id) {
